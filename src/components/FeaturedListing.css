@@ -1,6 +1,6 @@
-.header{
-    font-size: 30px;
-    margin-top: 25px;
+.listing-detail{
+    padding: 0 8px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
