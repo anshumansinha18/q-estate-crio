@@ -7,7 +7,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import axios from "axios";
-import config from "../config";
+import config from "../../config";
 import "./FeaturedListing.css";
 import { CardActionArea } from "@mui/material";
 
@@ -56,7 +56,7 @@ export default function FeaturedListing() {
                 </CardContent>
                 <CardActions>
                   <div className="listing-detail">
-                    <span>Rs {Math.trunc(ele.price / 100)}</span>
+                    <span>Rs {ele.price}</span>
                     <span>{ele.city.slice(0, 5)}</span>
                   </div>
                 </CardActions>

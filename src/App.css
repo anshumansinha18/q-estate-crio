@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inder&display=swap');
 
+
+.App{
+  width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+}
 body{
   background-color: #FFFDF5;
   font-family: 'Inder', sans-serif;

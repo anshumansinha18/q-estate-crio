@@ -1,0 +1,45 @@
+.property-listings-view{
+    margin-top: 10vh;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 100px;
+    row-gap: 20px;
+}
+
+.checkbox-filter-container{
+     align-self: start;
+     grid-row: 2/span 1;
+}
+
+.sorting-filter-container{
+    grid-column: 2/span 1;
+    display: flex;
+    align-items: start;
+}
+
+.dropdown{
+    position: relative;
+    display: inline-block;
+    background-color: #ffffff;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    padding: 8px;
+    width: 200px;
+    margin-left: 10px;
+}
+
+select {
+    width: 100%;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+}
+
+
+
+.title{
+    margin: 0;
+}
