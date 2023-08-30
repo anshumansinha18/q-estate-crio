@@ -1,0 +1,51 @@
+.detail-page-container{
+    margin-top: 100px !important;
+    width: 80vw;
+    margin: auto auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    justify-content: flex-start;
+    gap: 10%;
+}
+
+.image-container img{
+    object-fit: cover;
+    width: 600px;
+}
+
+.contact-button{
+    background-color: rgb(255, 0, 0);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.property-details{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.property-details h1{
+    margin: 0;
+    font-size: 4vw;
+}
+
+@media only screen and (max-width: 1092px) {
+    .detail-page-container{
+        margin-top: 100px !important;
+        width: 80vw;
+        margin: auto auto;
+        display: grid;
+        grid-template-columns: 1fr ;
+        justify-content: flex-start;
+        gap: 10%;
+    }
+    .image-container img{
+        object-fit: cover;
+        width: 100%;
+    }
+}

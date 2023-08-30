@@ -10,9 +10,11 @@ import axios from "axios";
 import config from "../../config";
 import "./FeaturedListing.css";
 import { CardActionArea } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function FeaturedListing() {
   const [listingsData, setListingsData] = useState([]);
+  const navigate = useNavigate();
 
   //fetch listings data:
   async function fetchListings() {
@@ -38,13 +40,15 @@ export default function FeaturedListing() {
         {listingsData.map((ele, index) => (
           <Grid item xs={12} sm={6} md={3}>
             <Card sx={{ maxWidth: 345 }}>
-              <CardActionArea>
+              <CardActionArea
+                onClick={() => navigate(`/detail/${ele.property_id}`)}
+              >
                 <CardMedia
                   sx={{ height: 200 }}
                   image={`/assets/real-estate-${index}.jpg`}
                   title="green iguana"
                 />
-                <CardContent>
+                <CardContent className="property-name">
                   <Typography
                     gutterBottom
                     variant="h5"
@@ -56,8 +60,10 @@ export default function FeaturedListing() {
                 </CardContent>
                 <CardActions>
                   <div className="listing-detail">
-                    <span>Rs {ele.price}</span>
-                    <span>{ele.city.slice(0, 5)}</span>
+                    <span className="property-price">Rs {ele.price}</span>
+                    <span className="property-city">
+                      {ele.city.slice(0, 5)}
+                    </span>
                   </div>
                 </CardActions>
               </CardActionArea>

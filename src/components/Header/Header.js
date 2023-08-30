@@ -7,24 +7,26 @@ export default function Header({ onPage }) {
 
   return (
     <div className="header">
-      <div className="logo">Q-Estate</div>
+      <div className="logo" onClick={() => navigate("/")}>
+        QEstate Homes
+      </div>
       {onPage === "home" ? (
         <div className="nav-link" onClick={() => navigate("/listings")}>
-          Explore
+          <span>Explore</span>
         </div>
       ) : onPage === "listings" ? (
         <div className="nav-link" onClick={() => navigate("/")}>
-          Featured
+          Featured Listings
         </div>
       ) : (
-        <>
+        <div className="nav-list">
           <div className="nav-link" onClick={() => navigate("/")}>
             Featured
           </div>
-          <div className="nav-link" onClick={() => navigate("/")}>
+          <div className="nav-link" onClick={() => navigate("/listings")}>
             Explore
           </div>
-        </>
+        </div>
       )}
     </div>
   );

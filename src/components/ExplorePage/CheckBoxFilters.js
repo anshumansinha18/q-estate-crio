@@ -1,7 +1,7 @@
 import React from "react";
 
 const locations = ["Sintra", "Amper", "Świnna", "Hanji"];
-const prices = ["0-264890", "264890-600000", "600001-1000000"];
+const prices = ["0-300000", "300001-600000", "600001-1000000"];
 
 export default function CheckBoxFilters({
   locationFilter,
@@ -11,7 +11,6 @@ export default function CheckBoxFilters({
 }) {
   return (
     <div className="checkbox-filter-container">
-      {console.log(locationFilter)}
       <div className="filter">
         <h2>Location</h2>
         {locations.map((location, index) => (

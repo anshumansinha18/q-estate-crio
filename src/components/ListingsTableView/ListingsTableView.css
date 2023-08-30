@@ -33,6 +33,14 @@ th {
     border-radius: 20px;
   }
 
+  .property_name{
+    cursor: pointer;
+  }
+
+  .selected{
+    background-color: beige;
+  }
+
   .pagination-container{
     display: flex;
     flex-direction: column;
@@ -41,7 +49,10 @@ th {
     gap: 10px;
   }
 
-  
+
+  tr:hover{
+    background-color: rgb(197, 197, 197);
+  }
   
   .pagination button {
     background-color: #1976d2;
@@ -63,6 +74,7 @@ th {
   }
 
   .action-items{
+    cursor: pointer;
     display: flex;
     gap: 8px;
   }

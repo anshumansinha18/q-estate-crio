@@ -7,11 +7,10 @@ import CheckBoxFilters from "./CheckBoxFilters";
 import SortingFilters from "./SortingFilters";
 import ListingsTableView from "../ListingsTableView/ListingsTableView";
 import "./Explore.css";
+import Footer from "../Footer/Footer";
 
 export default function Explore() {
   const [listingsData, setListingsData] = useState([]);
-  const [filteredListings, setFilteredListings] = useState(listingsData);
-
   const [locationFilter, setLocationFilter] = useState([]);
   const [priceRangeFilter, setPriceRangeFilter] = useState([]);
   const [sortBy, setSortBy] = useState("");
@@ -47,54 +46,11 @@ export default function Explore() {
     );
     const data = response.data.listings;
     setListingsData(data);
-    setFilteredListings(data);
   }
 
   useEffect(() => {
     fetchListings();
   }, []);
-
-  useEffect(() => {
-    applyFilters(locationFilter, priceRangeFilter, sortBy);
-  }, [locationFilter, priceRangeFilter, sortBy]);
-
-  const applyFilters = (location, priceRange, sortBy) => {
-    console.log("From APPLY FILTERS: ", location, priceRange, sortBy);
-
-    let filteredData = [...listingsData];
-
-    if (location.length) {
-      filteredData = filteredData.filter((listing) =>
-        location.includes(listing.city)
-      );
-    }
-
-    if (priceRange.length) {
-      filteredData = filteredData.filter((listing) => {
-        let found = false;
-        priceRange.forEach((ele) => {
-          let low = ele.split("-")[0];
-          let high = ele.split("-")[1];
-          if (
-            Number(listing.price) >= Number(low) &&
-            Number(listing.price) <= Number(high)
-          )
-            found = true;
-        });
-        return found;
-      });
-    }
-
-    if (sortBy === "price") {
-      filteredData.sort((a, b) => a.price - b.price);
-    } else if (sortBy === "date") {
-      filteredData.sort(
-        (a, b) => new Date(a.listing_date) - new Date(b.listing_date)
-      );
-    }
-    console.log(filteredData);
-    setFilteredListings(filteredData);
-  };
 
   return (
     <>
@@ -112,12 +68,13 @@ export default function Explore() {
           handleSortByChange={handleSortByChange}
         />
         <ListingsTableView
-          filteredData={filteredListings}
-          setFilteredData={setFilteredListings}
-          originalData={listingsData}
-          editOriginalData={setListingsData}
+          listingsData={listingsData}
+          locationFilter={locationFilter}
+          priceRangeFilter={priceRangeFilter}
+          sortBy={sortBy}
         />
       </div>
+      <Footer />
     </>
   );
 }

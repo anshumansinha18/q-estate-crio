@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./EditModal.css";
 
-export default function EditModal({ item, onSave, onClose }) {
+export default function EditModal({ item, onSave, onClose, displayData }) {
   const [editedItem, setEditedItem] = useState({ ...item });
 
   const handleInputChange = (event) => {
@@ -10,7 +10,7 @@ export default function EditModal({ item, onSave, onClose }) {
   };
 
   const handleSaveClick = () => {
-    onSave(editedItem);
+    onSave(editedItem, displayData);
     onClose();
   };
 
