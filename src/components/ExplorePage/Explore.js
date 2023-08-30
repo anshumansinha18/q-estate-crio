@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import config from "../../config";
 import Header from "../Header/Header";
-import CheckBoxFilters from "./CheckBoxFilters";
-import SortingFilters from "./SortingFilters";
+import CheckBoxFilters from "../CheckboxFilter/CheckBoxFilters";
+import SortingFilters from "../SortingFilter/SortingFilters";
 import ListingsTableView from "../ListingsTableView/ListingsTableView";
 import "./Explore.css";
 import Footer from "../Footer/Footer";
@@ -41,11 +41,15 @@ export default function Explore() {
   };
 
   async function fetchListings() {
-    const response = await axios.get(
-      `${config.backendEndpoint}/real-estate-data`
-    );
-    const data = response.data.listings;
-    setListingsData(data);
+    try {
+      const response = await axios.get(
+        `${config.backendEndpoint}/real-estate-data`
+      );
+      const data = response.data.listings;
+      setListingsData(data);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   useEffect(() => {

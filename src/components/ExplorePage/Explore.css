@@ -44,3 +44,69 @@ select {
 .title{
     margin: 0;
 }
+
+@media only screen and (max-width: 976px) {
+
+    .property-listings-view{
+        width: 80vw;
+        margin: auto auto;
+        margin-top: 10vh;
+        display: grid;
+        grid-template-columns: 60% 40%;
+        column-gap: 0;
+        row-gap: 20px;
+        margin-bottom: 50px;
+    }
+
+    .checkbox-filter-container{
+        display: flex;
+        justify-content: space-between;
+        align-self: start;
+        grid-row: 1/2;
+   }
+   
+   .sorting-filter-container{
+       display: flex;
+      justify-self: flex-end;
+       align-items: start;
+   }
+
+   .listings-table-container{
+      grid-column: 1/-1
+   }
+   
+}
+
+@media only screen and (max-width: 600px) {
+
+    .property-listings-view{
+        width: 80vw;
+        margin: auto auto;
+        margin-top: 10vh;
+        display: grid;
+        grid-template-columns: 1fr;
+        column-gap: 0;
+        row-gap: 20px;
+        margin-bottom: 50px;
+    }
+    .checkbox-filter-container{
+        align-self: start;
+        grid-row: 1/span 1;
+    }
+
+   .sorting-filter-container{
+    display: flex;
+    grid-row: 2/ span 1;
+    grid-column: 1/-1;
+    justify-self: flex-start;
+    align-items: start;
+    }
+.listings-table-container{
+    overflow: scroll;
+    grid-column: 1/-1;
+ }
+
+ .listings-table-container::-webkit-scrollbar {
+    display: none;
+}
+}

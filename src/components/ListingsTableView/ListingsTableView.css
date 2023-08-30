@@ -41,6 +41,11 @@ th {
     background-color: beige;
   }
 
+  .pagination{
+    text-align: center;
+  }
+
+
   .pagination-container{
     display: flex;
     flex-direction: column;
@@ -78,5 +83,3 @@ th {
     display: flex;
     gap: 8px;
   }
-
- 

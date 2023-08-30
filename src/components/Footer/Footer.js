@@ -13,24 +13,6 @@ export default function Footer() {
           provident a.
         </div>
       </div>
-      <div className="second-col">
-        <h2 className="link-header">Products</h2>
-        <ul className="link-items">
-          <li>Listings</li>
-          <li>Popular Listings</li>
-          <li>Rent</li>
-          <li>Buy Property</li>
-        </ul>
-      </div>
-      <div className="third-col">
-        <h2 className="link-header">Useful Links</h2>
-        <ul className="link-items">
-          <li>Your Account</li>
-          <li>Become an affliate</li>
-          <li>Agent Rates</li>
-          <li>Help</li>
-        </ul>
-      </div>
       <div className="fourth-col">
         <h2 className="link-header">Contact</h2>
         <ul className="link-items">

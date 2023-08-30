@@ -8,7 +8,7 @@ export default function Header({ onPage }) {
   return (
     <div className="header">
       <div className="logo" onClick={() => navigate("/")}>
-        QEstate Homes
+        QEstate
       </div>
       {onPage === "home" ? (
         <div className="nav-link" onClick={() => navigate("/listings")}>

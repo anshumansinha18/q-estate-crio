@@ -74,10 +74,6 @@ export default function ListingsTableView({
     setEditingItem(null);
   };
 
-  // useEffect(() => {
-  //   setCurrentPage(Math.min(currentPage, totalPages));
-  // }, [filteredData]);
-
   const handleRowCheckboxChange = (event, id) => {
     const isChecked = event.target.checked;
     if (isChecked) {
@@ -159,7 +155,8 @@ export default function ListingsTableView({
 
   const getPageNumbers = (totalPages) => {
     const pageNumbers = [];
-    for (let i = 1; i <= totalPages; i++) pageNumbers.push(i);
+    for (let currPage = 1; currPage <= totalPages; currPage++)
+      pageNumbers.push(currPage);
     return pageNumbers;
   };
 
@@ -177,9 +174,9 @@ export default function ListingsTableView({
     if (priceRange.length) {
       updatedData = updatedData.filter((listing) => {
         let found = false;
-        priceRange.forEach((ele) => {
-          let low = ele.split("-")[0];
-          let high = ele.split("-")[1];
+        priceRange.forEach((rangeEntry) => {
+          let low = rangeEntry.split("-")[0];
+          let high = rangeEntry.split("-")[1];
           if (
             Number(listing.price) >= Number(low) &&
             Number(listing.price) <= Number(high)
@@ -191,10 +188,15 @@ export default function ListingsTableView({
     }
 
     if (sortBy === "price") {
-      updatedData.sort((a, b) => a.price - b.price);
+      updatedData.sort(
+        (firstListing, secondListing) =>
+          firstListing.price - secondListing.price
+      );
     } else if (sortBy === "date") {
       updatedData.sort(
-        (a, b) => new Date(a.listing_date) - new Date(b.listing_date)
+        (firstListing, secondListing) =>
+          new Date(firstListing.listing_date) -
+          new Date(secondListing.listing_date)
       );
     }
 
@@ -202,7 +204,7 @@ export default function ListingsTableView({
   }
 
   return (
-    <div>
+    <div className="listings-table-container">
       <table>
         <thead>
           <tr>
@@ -210,7 +212,7 @@ export default function ListingsTableView({
               <input
                 type="checkbox"
                 checked={isAllSelected}
-                onChange={(e) => handleSelectAll(e, displayData)}
+                onChange={(event) => handleSelectAll(event, displayData)}
               />
             </th>
             <th>Property Name</th>
@@ -232,8 +234,8 @@ export default function ListingsTableView({
                 <input
                   type="checkbox"
                   checked={selectedRows.includes(items.property_id)}
-                  onChange={(e) =>
-                    handleRowCheckboxChange(e, items.property_id)
+                  onChange={(event) =>
+                    handleRowCheckboxChange(event, items.property_id)
                   }
                 />
               </td>

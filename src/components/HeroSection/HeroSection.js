@@ -1,6 +1,5 @@
 import React from "react";
 import "./HeroSection.css";
-import Header from "../Header/Header";
 
 export default function HeroSection() {
   return (

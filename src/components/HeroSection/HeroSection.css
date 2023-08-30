@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 .hero-section{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.548), rgba(0, 0, 0, 0.5)),url("hero-image.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.548), rgba(0, 0, 0, 0.5)),url("/public/assets/hero-image.jpg");
     background-repeat: no-repeat;
     background-position: center center;
     background-size:cover;
-    height: 80vh;
+    height: 70vh;
     width: 100%;
     display: flex;
     align-items: center;
