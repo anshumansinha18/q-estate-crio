@@ -11,6 +11,7 @@ export default function CheckBoxFilters({
 }) {
   return (
     <div className="checkbox-filter-container">
+      {/*LOCATION BASED FILTERS: */}
       <div className="filter">
         <h2>Location</h2>
         {locations.map((location, index) => (
@@ -27,6 +28,7 @@ export default function CheckBoxFilters({
           </div>
         ))}
       </div>
+      {/*PRICE BASED FILTERS:*/}
       <div className="filter">
         <h2>Price Range</h2>
         {prices.map((price, index) => (
@@ -42,8 +44,6 @@ export default function CheckBoxFilters({
             </label>
           </div>
         ))}
-
-        {/* Add other price range checkboxes */}
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ export default function ListingsTableView({
   priceRangeFilter,
   sortBy,
 }) {
-  //states:
+  //STATES:
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredData, setFilteredData] = useState([]);
   const [editingItem, setEditingItem] = useState(null);
@@ -20,7 +20,7 @@ export default function ListingsTableView({
   const [selectedRows, setSelectedRows] = useState([]);
   const navigate = useNavigate();
 
-  //variables:
+  //VARIABLES:
   const itemsPerPage = 10;
   let displayData = applyFilters(
     filteredData,
@@ -33,25 +33,11 @@ export default function ListingsTableView({
   const endIndex = startIndex + itemsPerPage;
   const isAllSelected = selectedRows.length === itemsPerPage;
 
-  //useEffects:
-  useEffect(() => {
-    setFilteredData(listingsData);
-  }, [listingsData]);
-
-  //EDITING:
+  //EDITING METHODS:
   const handleEdit = (item) => {
     setEditingItem(item);
     setIsEditModalOpen(true);
   };
-
-  useEffect(() => {
-    setSelectedRows([]);
-  }, [filteredData]);
-
-  useEffect(() => {
-    setCurrentPage(1);
-    setSelectedRows([]);
-  }, [locationFilter, priceRangeFilter]);
 
   const handleEditSave = (editedItem) => {
     const updatedData = [...filteredData];
@@ -68,24 +54,56 @@ export default function ListingsTableView({
     setEditingItem(null);
   };
 
-  //MODALS OPERATION:
   const handleCloseEditModal = () => {
     setIsEditModalOpen(false);
     setEditingItem(null);
   };
 
+  //DELETION OPERATIONS:
+  const handleDelete = (id) => {
+    const updatedData = filteredData.filter((ele) => ele.property_id !== id);
+    //// If all elements on the last page are deleted, adjust the currentPage:
+    const updatedTotalPages = Math.ceil(updatedData.length / itemsPerPage);
+    if (currentPage > updatedTotalPages) {
+      setCurrentPage(updatedTotalPages);
+    }
+
+    setFilteredData(updatedData);
+
+    setSelectedRows([]);
+  };
+
+  const handleDeleteAllSelected = () => {
+    if (!selectedRows.length) return;
+    const updatedData = filteredData.filter(
+      (property) => !selectedRows.includes(property.property_id)
+    );
+    //// If all elements on the last page are deleted, adjust the currentPage:
+    const updatedTotalPages = Math.ceil(updatedData.length / itemsPerPage);
+    if (currentPage > updatedTotalPages) {
+      setCurrentPage(updatedTotalPages);
+    }
+
+    setFilteredData(updatedData);
+
+    setSelectedRows([]);
+  };
+
+  //CHECKBOXES OPERATION METHODS:
   const handleRowCheckboxChange = (event, id) => {
     const isChecked = event.target.checked;
     if (isChecked) {
       //If the items is checked, push it into selectedRows array
       setSelectedRows([...selectedRows, id]);
     } else {
+      //If the item is unchecked, then remove it from the selected Rows:
       setSelectedRows(selectedRows.filter((item) => item !== id));
     }
   };
 
   const handleSelectAll = (event, displayData) => {
     if (event.target.checked) {
+      //get the startIndex of the currPage.
       const startIndex = (currentPage - 1) * itemsPerPage;
 
       let rowsSelected = [];
@@ -100,6 +118,8 @@ export default function ListingsTableView({
       setSelectedRows([]);
     }
   };
+
+  //PAGINATION OPERATIONS:
   const handleFirstPage = () => {
     setCurrentPage(1);
     setSelectedRows([]);
@@ -119,35 +139,6 @@ export default function ListingsTableView({
   };
   const handlePageClick = (page) => {
     setCurrentPage(page);
-    setSelectedRows([]);
-  };
-
-  const handleDelete = (id) => {
-    const updatedData = filteredData.filter((ele) => ele.property_id !== id);
-    //// If all elements on the last page are deleted, adjust the currentPage:
-    const updatedTotalPages = Math.ceil(updatedData.length / itemsPerPage);
-    if (currentPage > updatedTotalPages) {
-      setCurrentPage(updatedTotalPages);
-    }
-
-    setFilteredData(updatedData);
-
-    setSelectedRows([]);
-  };
-
-  const handleDeleteAllSelected = () => {
-    if (!selectedRows.length) return;
-    const updatedData = filteredData.filter(
-      (ele) => !selectedRows.includes(ele.property_id)
-    );
-    //// If all elements on the last page are deleted, adjust the currentPage:
-    const updatedTotalPages = Math.ceil(updatedData.length / itemsPerPage);
-    if (currentPage > updatedTotalPages) {
-      setCurrentPage(updatedTotalPages);
-    }
-
-    setFilteredData(updatedData);
-
     setSelectedRows([]);
   };
 
@@ -202,6 +193,20 @@ export default function ListingsTableView({
 
     return updatedData;
   }
+
+  //USE EFFECTS:
+  useEffect(() => {
+    setFilteredData(listingsData);
+  }, [listingsData]);
+
+  useEffect(() => {
+    setSelectedRows([]);
+  }, [filteredData]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+    setSelectedRows([]);
+  }, [locationFilter, priceRangeFilter]);
 
   return (
     <div className="listings-table-container">

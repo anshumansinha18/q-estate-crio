@@ -42,10 +42,9 @@
     margin-bottom: 4px;
 }
 
-@media only screen and (max-width: 900px) {
+/* @media only screen and (max-width: 900px) {
     .footer-container{
-        /* background-color: rgb(247, 247, 255); */
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
-}
+} */

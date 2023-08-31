@@ -13,7 +13,7 @@ export default function Footer() {
           provident a.
         </div>
       </div>
-      <div className="fourth-col">
+      <div className="second-col">
         <h2 className="link-header">Contact</h2>
         <ul className="link-items">
           <li>Bengaluru, India</li>

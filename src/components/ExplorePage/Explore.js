@@ -10,16 +10,21 @@ import "./Explore.css";
 import Footer from "../Footer/Footer";
 
 export default function Explore() {
-  const [listingsData, setListingsData] = useState([]);
-  const [locationFilter, setLocationFilter] = useState([]);
-  const [priceRangeFilter, setPriceRangeFilter] = useState([]);
-  const [sortBy, setSortBy] = useState("");
+  //STATES:
+  const [listingsData, setListingsData] = useState([]); //for all the states
+  const [locationFilter, setLocationFilter] = useState([]); //location based filters
+  const [priceRangeFilter, setPriceRangeFilter] = useState([]); //priceRangeFitlers
+  const [sortBy, setSortBy] = useState(""); //sortBy filters
+
+  //FILTER HANDLERS:
 
   const handleLocaltionFilterChange = (event) => {
     const isChecked = event.target.checked;
     if (isChecked) {
+      //If a location is checked, then add that location to the locationFilters state:
       setLocationFilter((prevState) => [...prevState, event.target.value]);
     } else {
+      //If a location is unchecked, remove that location from the locationFilters:
       setLocationFilter((prevState) =>
         prevState.filter((item) => item !== event.target.value)
       );
@@ -28,8 +33,10 @@ export default function Explore() {
 
   const handlePriceRangeFilterChange = (event) => {
     const isChecked = event.target.checked;
+    //If a Price Filter is checked, then add that priceRange to priceRangeFilter state:
     if (isChecked)
       setPriceRangeFilter((prevState) => [...prevState, event.target.value]);
+    //If a price filter is unchecked, then remove that price filter from the priceRangeFilter state:
     else
       setPriceRangeFilter((prevState) =>
         prevState.filter((item) => item !== event.target.value)
@@ -37,8 +44,12 @@ export default function Explore() {
   };
 
   const handleSortByChange = (event) => {
+    //If a sort dropdown option is selected, then add it to sortBy state(we need to add only single value here)
     setSortBy(event.target.value);
   };
+
+
+  //FETCH ALL LISTINGS: 
 
   async function fetchListings() {
     try {
@@ -52,6 +63,7 @@ export default function Explore() {
     }
   }
 
+  //USE EFFECTS: 
   useEffect(() => {
     fetchListings();
   }, []);

@@ -11,6 +11,7 @@ export default function SortingFilters({ sortBy, handleSortByChange }) {
   return (
     <div className="sorting-filter-container">
       <h2 className="title">Sort By:</h2>
+      {/* USE SIMPLE MUI DROPDOWN HERE: https://mui.com/material-ui/react-select/#basic-select */}
       <Box className="dropdown" sx={{ minWidth: 120 }}>
         <FormControl fullWidth size="small">
           <Select
